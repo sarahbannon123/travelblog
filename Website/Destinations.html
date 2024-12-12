@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Crazy Voyage</title>
+    <meta charset="UTF-8">
+    <meta name="Travel Tips" content="Real-time weather informaiton">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Destinations</title>
+    <link rel="stylesheet" href="CSS2/Destinations.css">
+    <!-- Leaflet CSS for map styling -->
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css" />
+    <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"></script>
+</head>
+<body>
+    <header>
+        <nav>
+            <ul>
+                <li><a href="index2.html">Home</a></li>
+                <li><a href="Traveltips.html">Travel Tips</a></li>
+                <li><a href="Destinations.html" class="active">Destinations</a></li>
+                <li><a href="Contact.html">Contact</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+
+     <section id="weather">
+    <h2>Weather Info</h2>
+    <div id="weather-container">
+        <!-- Current Weather -->
+        <div id="current-weather">
+            <h3>Current Weather in <span id="city-name">...</span></h3>
+            <img id="weather-icon" src="" alt="Weather Icon" style="display:none;">
+            <p id="temperature">Temperature: --°C</p>
+            <p id="description">Description: --</p>
+            <p id="wind-speed">Wind Speed: -- km/h</p>
+        </div>
+        <!-- Forecast -->
+        <div id="forecast">
+            <h3>3-Day Forecast</h3>
+            <div id="forecast-cards"></div>
+        </div>
+    </div>
+</section>
+
+    </main>
+
+    <footer>
+        <p>© 2024 crazyvoyage.com</p>
+    </footer>
+
+    <script>
+    // Example function to fetch weather data from an API (e.g., OpenWeather API)
+    async function fetchWeatherData() {
+        const apiKey = 'e3060481eaf544ba87da360a1aaa0e78'; // Replace with your actual API key
+        const city = 'Barcelona'; // Replace with the city of your choice
+        const apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=${city}&units=metric&appid=${apiKey}`;
+
+        try {
+            // Fetch current weather
+            const response = await fetch(apiUrl);
+            const data = await response.json();
+
+            if (response.ok) {
+                // Display current weather
+                const currentWeather = data.weather[0].description;
+                const temp = data.main.temp;
+                const windSpeed = data.wind.speed;
+                const weatherIcon = `http://openweathermap.org/img/wn/${data.weather[0].icon}.png`;
+
+                document.getElementById('current-weather').innerHTML = `
+                    <h3>Current Weather in ${city}</h3>
+                    <img src="${weatherIcon}" alt="Weather Icon">
+                    <p><strong>Current weather:</strong> ${currentWeather}</p>
+                    <p><strong>Temperature:</strong> ${temp}°C</p>
+                    <p><strong>Wind Speed:</strong> ${windSpeed} m/s</p>
+                `;
+            } else {
+                document.getElementById('current-weather').innerHTML = 'Error fetching weather data.';
+            }
+
+            // Fetch 3-day forecast data
+            const forecastApiUrl = `https://api.openweathermap.org/data/2.5/forecast?q=${city}&appid=${apiKey}&units=metric`;
+
+            const forecastResponse = await fetch(forecastApiUrl);
+            const forecastData = await forecastResponse.json();
+
+            if (forecastResponse.ok) {
+                // Display forecast data for 3 days
+                const forecastCards = document.getElementById('forecast-cards');
+                forecastCards.innerHTML = '';
+
+                forecastData.list.slice(0, 3).forEach(forecast => {
+                    const date = new Date(forecast.dt * 1000);
+                    const dateString = date.toLocaleDateString();
+                    const forecastTemp = forecast.main.temp;
+                    const forecastIcon = `http://openweathermap.org/img/wn/${forecast.weather[0].icon}.png`;
+
+                    const forecastCard = document.createElement('div');
+                    forecastCard.className = 'forecast-card';
+                    forecastCard.innerHTML = `
+                        <img src="${forecastIcon}" alt="Forecast icon">
+                        <h4>${dateString}</h4>
+                        <p>${forecastTemp}°C</p>
+                    `;
+                    forecastCards.appendChild(forecastCard);
+                });
+            } else {
+                document.getElementById('forecast-cards').innerHTML = 'Error fetching forecast data.';
+            }
+        } catch (error) {
+            console.error('Error fetching the weather data:', error);
+            document.getElementById('current-weather').innerHTML = 'Error fetching weather data.';
+        }
+    }
+
+    // Call the function when the page loads
+    window.onload = fetchWeatherData;
+</script>
+
+</body>
+</html>
+
+
+
+
+

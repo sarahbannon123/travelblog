@@ -1,0 +1,262 @@
+/* General Reset */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* Body Styling */
+body {
+    font-family: 'Arial', sans-serif;
+    background-color: #f9f9f9;
+    color: #333;
+    line-height: 1.6;
+}
+
+/* Header and Navigation */
+header {
+    background-color: #333;
+    padding: 1rem 1.5rem;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+header nav ul {
+    list-style: none;
+    display: flex;
+    justify-content: center;
+    gap: 60px;
+}
+
+header nav ul li {
+    display: inline;
+}
+
+header nav ul li a {
+    color: white;
+    text-decoration: none;
+    font-weight: bold;
+    padding: 5px 10px;
+    transition: background-color 0.3s;
+}
+
+header nav ul li a.active {
+     color: #ff69b4; /* Gold for active link */
+     border-radius: 4px;
+}
+
+header nav ul li a:hover {
+    background-color: #ff69b4; /* Gold hover effect */
+    border-radius: 4px;
+}
+
+/* Travel Tips Hero Section */
+#traveltipshero {
+    background-image: url('images/barcelona.jpg'); /* New hero image */
+    background-size: cover;
+    background-position: center;
+    text-align: center;
+    padding: 50px 20px;
+    color: #ff69b4; 
+    height: 200px; /* Adjust height if needed */
+    font-size: 1.5em
+}
+
+/* Tips Section */
+#tips {
+    padding: 2rem; /* Increased padding for better spacing */
+    background-color: #f0f8ff; /* Light blue background */
+    text-align: center; /* Center the text */
+}
+
+#tips h2 {
+    color: #000; /* Black color for the heading */
+    font-size: 2rem; /* Slightly larger heading */
+    margin-bottom: 1.5rem; /* Space below the heading */
+    font-weight: bold; /* Make heading bold for emphasis */
+}
+
+#tips ul {
+    list-style-type: disc; /* Bullet points for the list */
+    padding-left: 2rem; /* Add left padding to align with the text */
+    margin-top: 0; /* Remove default margin */
+}
+
+#tips ul li {
+    margin-bottom: 2rem; /* Space between each list item */
+    font-size: 1.1rem; /* Slightly larger font for better readability */
+    display: block; /* Stack the image and text vertically */
+    text-align: center; /* Center the text inside the list item */
+}
+
+#tips ul li h3 {
+    font-size: 1.2rem; /* Subheading for each tip */
+    margin-bottom: 0.5rem; /* Space below subheading */
+    font-weight: bold; /* Make subheading bold */
+}
+
+#tips ul li p {
+    font-size: 1rem; /* Text description */
+    line-height: 1.6;
+    margin-top: 0.5rem;
+}
+
+#tips ul li img {
+    width: 60px; /* Set image size */
+    height: auto; /* Keep image aspect ratio */
+    margin-top: 1rem; /* Add space above the image */
+    border-radius: 5px; /* Rounded corners for images */
+}
+
+/* Responsive Layout for smaller screens */
+@media (max-width: 768px) {
+    #tips ul li {
+        display: block; /* Ensure items are stacked vertically on smaller screens */
+    }
+
+    #tips ul li img {
+        width: 80px; /* Slightly larger images on mobile */
+        margin-top: 1rem; /* Maintain spacing above the image */
+    }
+}
+
+
+
+/* Highlights Section */
+#highlights {
+    padding: 20px;
+    text-align: center;
+    background-color: white;
+    border-top: 1px solid #ccc;
+}
+
+#highlights h2 {
+    margin-bottom: 15px;
+}
+
+#highlights ul {
+    list-style: none;
+    padding: 0;
+}
+
+#highlights ul li {
+    margin: 10px 0;
+}
+
+/* Center the #cta section */
+#cta {
+    text-align: center; /* Centers the text */
+    display: flex; /* Use flexbox to align content */
+    flex-direction: column; /* Stack items vertically */
+    justify-content: center; /* Vertically center content */
+    align-items: center; /* Horizontally center content */
+    height: 30vh; /* Full viewport height */
+    background-image: url('images/image3.avif'); /* New hero image */
+    background-size: cover; /* Ensures the image covers the entire section */
+    background-position: center; /* Centers the background image */
+    background-repeat: no-repeat; /* Prevents the image from repeating */
+    color: white; /* Make text white for better contrast with the background */
+}
+
+#cta h1 {
+    margin-bottom: 15px; /* Space between the heading and button */
+}
+
+#cta .button {
+    padding: 10px 20px;
+    background-color: #ff69b4; /* Button color */
+    color: white;
+    text-decoration: none;
+    font-weight: bold;
+    border-radius: 5px;
+    transition: background-color 0.3s;
+}
+
+#cta .button:hover {
+    background-color: #0000ff; /* Button hover effect */
+}
+
+/* Tablet view */
+@media screen and (max-width: 768px) {
+    header nav ul {
+        flex-direction: column;
+        align-items: center;
+        gap: 30px;
+    }
+
+    #hero {
+        height: 300px;
+        padding: 30px 10px;
+    }
+
+    #hero h1 {
+        font-size: 1.8em;
+    }
+
+    #hero p {
+        font-size: 1em;
+    }
+
+    #highlights ul {
+        padding: 0;
+        list-style-type: none;
+    }
+
+    #highlights ul li {
+        margin: 10px 0;
+    }
+
+    footer {
+        font-size: 0.8rem;
+    }
+}
+
+/* Mobile view */
+@media screen and (max-width: 480px) {
+    header nav ul {
+        flex-direction: column;
+        align-items: center;
+        gap: 20px;
+    }
+
+    #hero {
+        height: 250px;
+        padding: 20px 10px;
+    }
+
+    #hero h1 {
+        font-size: 1.5em;
+    }
+
+    #hero p {
+        font-size: 0.9em;
+    }
+
+    #highlights {
+        padding: 15px;
+    }
+
+    footer {
+        font-size: 0.7rem;
+    }
+}
+
+/* Footer Styling */
+footer {
+    background-color: #333;
+    color: white;
+    text-align: center;
+    padding: 20px;
+    margin-top: auto;
+    font-size: 1rem;
+}
+
+/* Add some space at the bottom */
+footer p {
+    font-size: 0.9rem;
+    color: #ccc;
+}
+
+/* Add some padding to the body */
+body {
+    padding-bottom: 20px;
+}
